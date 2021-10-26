@@ -6,6 +6,8 @@ export const tokenVocabulary: { [x: string]: chevrotain.TokenType; } = {}
 
 // specify tokens
 const Identifier = createToken({ name: "Identifier", pattern: /[a-zA-Z_][\.\w\d_]*/ });
+const Assignment = createToken({ name: "Assignment", pattern: /:=/});
+const Semicolon = createToken({ name: "Semicolon", pattern: /;+/});
 const Float = createToken({ name: "Float", pattern: /\d+\.\d+/ });
 const Integer = createToken({ name: "Integer", pattern: /\d+/, longer_alt: Float });
 
@@ -19,6 +21,8 @@ const WhiteSpace = createToken({
 // note we are placing WhiteSpace first as it is very common thus it will speed up the lexer.
 let allTokens = [
   WhiteSpace,
+  Assignment,
+  Semicolon,
   // "keywords" appear before the Identifier
   // The Identifier must appear after the keywords because all keywords are valid identifiers.
   Identifier,
@@ -35,7 +39,7 @@ allTokens.forEach((tokenType) => {
 
 export function lex(inputText: string) {
 
-  return "hello from lexer"
+  console.log("lexing: =====> \n "+inputText)
   const lexingResult = SelectLexer.tokenize(inputText)
 
   if (lexingResult.errors.length > 0) {

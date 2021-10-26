@@ -49,6 +49,7 @@
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$"
   },
   "dependencies": {
-    "chevrotain": "^9.1.0"
+    "chevrotain": "^9.1.0",
+    "prettier": "^2.4.1"
   }
 }
