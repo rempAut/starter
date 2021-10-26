@@ -1,13 +1,12 @@
 // Implementation of A lexer for IEC 61131-3 Structured text grammar
-import { createToken, Lexer, TokenType } from 'chevrotain';
+import { createToken, Lexer } from 'chevrotain';
 
-// the vocabulary will be exported and used in the Parser definition.
-export const tokenVocabulary: { [x: string]: chevrotain.TokenType; } = {}
+
 
 // specify tokens
 const Identifier = createToken({ name: "Identifier", pattern: /[a-zA-Z_][\.\w\d_]*/ });
-const Assignment = createToken({ name: "Assignment", pattern: /:=/});
-const Semicolon = createToken({ name: "Semicolon", pattern: /;+/});
+const Assignment = createToken({ name: "Assignment", pattern: /:=/ });
+const Semicolon = createToken({ name: "Semicolon", pattern: /;+/ });
 const Float = createToken({ name: "Float", pattern: /\d+\.\d+/ });
 const Integer = createToken({ name: "Integer", pattern: /\d+/, longer_alt: Float });
 
@@ -29,17 +28,23 @@ let allTokens = [
   Integer,
 ]
 
+// manually fill tokenVocabulary because we want to see all the members from exported val
+// the vocabulary will be exported and used in the Parser definition.
+const tokenVocabulary = {
+  WhiteSpace,
+  Assignment,
+  Semicolon,
+  Identifier,
+  Integer,
+}
+
+
 const SelectLexer = new Lexer(allTokens)
 
 
-allTokens.forEach((tokenType) => {
-  tokenVocabulary[tokenType.name] = tokenType
-})
+function lex(inputText: string) {
 
-
-export function lex(inputText: string) {
-
-  console.log("lexing: =====> \n "+inputText)
+  console.log("lexing: =====> \n " + inputText)
   const lexingResult = SelectLexer.tokenize(inputText)
 
   if (lexingResult.errors.length > 0) {
@@ -48,3 +53,5 @@ export function lex(inputText: string) {
 
   return lexingResult
 }
+
+export { tokenVocabulary, lex }
