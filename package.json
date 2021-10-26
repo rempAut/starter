@@ -47,5 +47,8 @@
       ".(ts|tsx)": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$"
+  },
+  "dependencies": {
+    "chevrotain": "^9.1.0"
   }
 }
