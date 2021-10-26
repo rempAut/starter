@@ -1,10 +1,11 @@
 import { helloWorld } from './app/HelloWorld';
 import { lex } from './chevro/lexer/lexer';
+import { parse } from './chevro/parser/parser';
 
 
 console.log(helloWorld());
 
 
 const inputText = "myVar1 :=   myValue2;"
-const lexingResult = lex(inputText)
-console.log(JSON.stringify(lexingResult, null, "\t"))
+ 
+const parsingResult = parse(inputText)
