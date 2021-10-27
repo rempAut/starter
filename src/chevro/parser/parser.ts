@@ -54,7 +54,9 @@ function parse(inputText: string) {
   parserInstance.input = lexResult.tokens
 
   // No semantic actions so this won't return anything yet.
-  //parserInstance.selectStatement()
+  // @ts-ignore
+  parserInstance.testRule()
+  console.log(parserInstance)
   console.log("hello from parser!")
 
   if (parserInstance.errors.length > 0) {
