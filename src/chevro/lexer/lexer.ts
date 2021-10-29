@@ -39,13 +39,13 @@ const tokenVocabulary = {
 }
 
 
-const SelectLexer = new Lexer(allTokens)
+const stLexer = new Lexer(allTokens)
 
 
 function lex(inputText: string) {
 
   console.log("lexing: =====> \n " + inputText)
-  const lexingResult = SelectLexer.tokenize(inputText)
+  const lexingResult = stLexer.tokenize(inputText)
 
   if (lexingResult.errors.length > 0) {
     throw Error("Sad Sad Panda, lexing errors detected")
