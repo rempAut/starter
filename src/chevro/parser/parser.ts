@@ -56,7 +56,6 @@ function parse(inputText: string) {
   // No semantic actions so this won't return anything yet.
   // @ts-ignore
   const cstOutput = parserInstance.testRule()
-  console.log(JSON.stringify(cstOutput,null, "\t"))
   console.log("hello from parser!")
 
   if (parserInstance.errors.length > 0) {
@@ -65,8 +64,7 @@ function parse(inputText: string) {
         parserInstance.errors[0].message
     )
   }
+  return cstOutput;
 }
-
-
 
 export { parserInstance, parse, stParser }
